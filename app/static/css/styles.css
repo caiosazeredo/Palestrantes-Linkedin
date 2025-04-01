@@ -1,0 +1,19 @@
+/* Estilos customizados para a aplicação */
+
+/* Ajustes no corpo da página */
+body {
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer fixo na parte inferior */
+.footer {
+    margin-top: auto;
+}
+
+/* Página ativa na navegação */
+.nav-link.active {
+    font-weight: bold;
+}

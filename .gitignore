@@ -1,0 +1,23 @@
+# Ambiente virtual
+venv/
+env/
+.env
+
+# Arquivos do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Banco de dados
+instance/
+*.db
+
+# Diretório de uploads
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+# Diretório de migrations
+migrations/
+
+# Logs
+*.log
