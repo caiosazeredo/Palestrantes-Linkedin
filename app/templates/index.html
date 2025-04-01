@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='img/logo.png') }}" alt="Senac Cápsula" height="100">
+    <h1 class="display-5 fw-bold text-primary">Gerenciamento de Palestrantes Senac Cápsula</h1>
+    <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4">
+            Plataforma para gerenciar palestrantes e eventos do Senac Cápsula, com integração ao LinkedIn para descobrir novos especialistas.
+        </p>
+        
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg px-4 gap-3">
+                <i class="bi bi-box-arrow-in-right"></i> Acessar o Sistema
+            </a>
+            <a href="{{ url_for('main.sobre') }}" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-info-circle"></i> Saiba Mais
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row mb-5 text-center">
+        <div class="col-12">
+            <h2 class="fw-bold">Principais Recursos</h2>
+        </div>
+    </div>
+    
+    <div class="row g-4 row-cols-1 row-cols-md-3">
+        <div class="col d-flex">
+            <div class="card flex-fill">
+                <div class="card-body text-center py-4">
+                    <div class="feature-icon bg-primary bg-gradient rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-people text-white fs-1"></i>
+                    </div>
+                    <h3 class="card-title">Gerenciamento de Palestrantes</h3>
+                    <p class="card-text">
+                        Cadastre, edite e organize palestrantes por especialidades, guardando seu histórico de eventos e avaliações.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col d-flex">
+            <div class="card flex-fill">
+                <div class="card-body text-center py-4">
+                    <div class="feature-icon bg-primary bg-gradient rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-linkedin text-white fs-1"></i>
+                    </div>
+                    <h3 class="card-title">Integração com LinkedIn</h3>
+                    <p class="card-text">
+                        Busque por novos especialistas no LinkedIn com base em palavras-chave e importe diretamente para o sistema.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col d-flex">
+            <div class="card flex-fill">
+                <div class="card-body text-center py-4">
+                    <div class="feature-icon bg-primary bg-gradient rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-calendar-event text-white fs-1"></i>
+                    </div>
+                    <h3 class="card-title">Gestão de Eventos</h3>
+                    <p class="card-text">
+                        Organize seus eventos, associe palestrantes e mantenha um histórico completo com avaliações e feedback.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Senac Cápsula" height="30" class="d-inline-block align-text-top me-2">
+            Gerenciamento de Palestrantes
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint == 'main.dashboard' %}active{% endif %}" 
+                       href="{{ url_for('main.dashboard') }}">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.endpoint.startswith('palestrantes.') %}active{% endif %}" 
+                       href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-people"></i> Palestrantes
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('palestrantes.index') }}">
+                                <i class="bi bi-list"></i> Listar Palestrantes
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('palestrantes.novo') }}">
+                                <i class="bi bi-person-plus"></i> Cadastrar Palestrante
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('palestrantes.buscar_linkedin') }}">
+                                <i class="bi bi-linkedin"></i> Buscar no LinkedIn
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('palestrantes.palavras_chave') }}">
+                                <i class="bi bi-tags"></i> Gerenciar Especialidades
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.endpoint.startswith('eventos.') %}active{% endif %}" 
+                       href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-calendar-event"></i> Eventos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('eventos.index') }}">
+                                <i class="bi bi-list"></i> Listar Eventos
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('eventos.novo') }}">
+                                <i class="bi bi-plus-circle"></i> Cadastrar Evento
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                {% if current_user.is_admin %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.endpoint.startswith('auth.') and request.endpoint != 'auth.logout' %}active{% endif %}" 
+                       href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-gear"></i> Administração
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('auth.listar_usuarios') }}">
+                                <i class="bi bi-people"></i> Usuários
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('auth.registro') }}">
+                                <i class="bi bi-person-plus"></i> Cadastrar Usuário
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% endif %}
+                
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint == 'main.sobre' %}active{% endif %}" 
+                       href="{{ url_for('main.sobre') }}">
+                        <i class="bi bi-info-circle"></i> Sobre
+                    </a>
+                </li>
+            </ul>
+            
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle"></i> {{ current_user.nome }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('auth.alterar_senha') }}">
+                                <i class="bi bi-key"></i> Alterar Senha
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                                <i class="bi bi-box-arrow-right"></i> Sair
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint == 'auth.login' %}active{% endif %}" 
+                       href="{{ url_for('auth.login') }}">
+                        <i class="bi bi-box-arrow-in-right"></i> Entrar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint == 'auth.cadastro' %}active{% endif %}" 
+                       href="{{ url_for('auth.cadastro') }}">
+                        <i class="bi bi-person-plus"></i> Cadastrar
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
